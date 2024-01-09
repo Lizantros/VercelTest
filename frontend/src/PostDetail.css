@@ -1,0 +1,132 @@
+/* General Styles */
+
+/* The main container that holds the entire content of the page */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Setting a minimum height of the container to fill the viewport */
+}
+
+/* The container that holds the main content */
+.content-container {
+    flex: 1; /* Allowing the container to grow and take up remaining space */
+    margin: 0 5vw; /* Adding margin on the left and right sides of the container */
+}
+
+/* Styling for the delete button */
+.delete-button {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+/* Styling for the header section */
+.header {
+    display: flex;
+    justify-content: space-between; /* Spacing out the elements evenly */
+    align-items: center; /* Aligning the elements vertically */
+    margin-bottom: 20px; /* Adding margin at the bottom of the header */
+    margin-top: 20px; /* Adding margin at the top of the header */
+    padding:0; /* Removing any padding */
+}
+
+/* Styling for the logo */
+.logo {
+    height: 50px;
+    cursor: pointer;
+    margin-left: 0; /* Adjusting the position of the logo */
+}
+
+/* Styling for the account link */
+.account-link {
+    color: red;
+    cursor: pointer;
+}
+
+/* Styling for the post and response containers */
+.post-container, .response-container {
+    display: flex;
+    align-items: flex-start; /* Aligning the elements at the top */
+    justify-content: flex-start; /* Justifying the elements to the start */
+    margin-bottom: 10px; /* Adding margin at the bottom of the containers */
+    gap: 20px; /* Adding a gap between the elements */
+}
+
+/* Styling for the user image */
+.user-image {
+    width: 50px; /* Setting a fixed width for the image */
+    height: 50px; /* Setting a fixed height for the image */
+    margin-right: 20px; /* Adding margin on the right side of the image */
+    border-radius: 50%; /* Making the image circular */
+    align-self: center; /* Aligning the image vertically at the center */
+}
+
+/* Styling for the text content */
+.text-content {
+    flex-grow: 1; /* Allowing the text content to grow and take up remaining space */
+    margin-left: 20px; /* Adding margin on the left side of the text content */
+}
+
+/* Styling for the red line */
+.red-line {
+    border-color: red;
+    width: 50%; /* Setting the width of the line */
+    margin-left: 0; /* Removing the default margin on the left side */
+}
+
+/* Styling for the response form textarea */
+.response-form textarea {
+    width: 100%; /* Setting the width of the textarea to 100% */
+    height: 100px; /* Setting a fixed height for the textarea */
+    margin-bottom: 10px; /* Adding margin at the bottom of the textarea */
+    border: 1px solid red; /* Adding a red border to the textarea */
+    border-radius: 10px; /* Adding border radius to the textarea */
+}
+
+/* Styling for the response form button */
+.response-form button {
+    display: flex;
+    justify-content: center; /* Centering the button horizontally */
+    background-color: white;
+    border-radius: 10px; /* Adding border radius to the button */
+    border: 1px solid red; /* Adding a red border to the button */
+    color: red;
+    margin: auto; /* Centering the button vertically */
+    margin-bottom: 20px; /* Adding margin at the bottom of the button */
+}
+
+/* Styling for the footer section */
+.footer {
+    background-color: red;
+    color: white;
+    text-align: center; /* Centering the text in the footer */
+    padding: 1vh 0; /* Adding padding to the top and bottom of the footer */
+    width: 100%; /* Setting the width of the footer to 100% */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    /* Styles applied when the screen width is less than or equal to 600px */
+
+    /* Changing the layout of the post and response containers to be stacked vertically */
+    .post-container, .response-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Adjusting the margins of the user image and text content to be centered */
+    .user-image, .text-content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Centering the text content on mobile */
+    .text-content {
+        text-align: center;
+    }
+
+    /* Adjusting the width of the red line to be 100% */
+    .red-line {
+        width: 100%;
+    }
+}

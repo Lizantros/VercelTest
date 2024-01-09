@@ -1,0 +1,15 @@
+.placeholderss::placeholder {
+  color: red;
+  opacity: 1; /* Firefox */
+  font-size: 1rem;
+}
+
+.placeholderss{
+  width:20vw;
+}
+
+.test{
+  width:100vw;
+  border:0;
+  height:100vh;
+}
