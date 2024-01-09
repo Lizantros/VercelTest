@@ -23,7 +23,7 @@ function PostDetail() {
     useEffect(() => {
         const fetchPostAndResponses = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}0/posts/${postId}`);
+                const { data } = await axios.get(`https://gw2test-5b5b5deabf74.herokuapp.com/posts/${postId}`);
                 setPost(data.post);
                 setResponses(data.responses);
             } catch (error) {
@@ -53,7 +53,7 @@ function PostDetail() {
         }
 
         try {
-            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/${postId}/responses`, { content: trimmedContent }, {
+            await axios.post(`https://gw2test-5b5b5deabf74.herokuapp.com/posts/${postId}/responses`, { content: trimmedContent }, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setResponses([...responses, { content: trimmedContent }]);
@@ -66,7 +66,7 @@ function PostDetail() {
     // Function to handle the deletion of a response
     const handleDeleteResponse = async (responseId) => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/responses/${responseId}`, {
+            await axios.delete(`https://gw2test-5b5b5deabf74.herokuapp.com/responses/${responseId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setResponses(responses.filter(response => response.id !== responseId));
@@ -93,7 +93,7 @@ function PostDetail() {
                 {/* Post Title and Details */}
                 <div className="post-container">
                     <img
-                        src={post.compteImage ? `${process.env.REACT_APP_API_BASE_URL}/${post.compteImage}` : defaultAvatar}
+                        src={post.compteImage ? `https://gw2test-5b5b5deabf74.herokuapp.com/${post.compteImage}` : defaultAvatar}
                         alt={`${post.userName ? post.userName : "User"}'s avatar`}
                         className="user-image"
                     />
@@ -111,7 +111,7 @@ function PostDetail() {
                         {index > 0 && <hr className="red-line" />}
                         <div className="response-container">
                             <img
-                                src={response.compteImage ? `${process.env.REACT_APP_API_BASE_URL}/${response.compteImage}` : defaultAvatar}
+                                src={response.compteImage ? `https://gw2test-5b5b5deabf74.herokuapp.com/${response.compteImage}` : defaultAvatar}
                                 alt={`${response.name ? response.name : "User"}'s avatar`}
                                 className="user-image"
                             />
