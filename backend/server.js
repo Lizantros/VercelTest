@@ -297,7 +297,7 @@ app.post("/posts/:id/responses", authenticateToken, (req, res) => {
 });
 
 // Get post details and responses route
-app.get("/posts/:id", async (req, res) => {
+app.get("/api/posts/:id", async (req, res) =>  {
   // Extract post ID from the URL parameters
   const { id } = req.params;
 

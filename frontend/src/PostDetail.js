@@ -23,7 +23,7 @@ function PostDetail() {
     useEffect(() => {
         const fetchPostAndResponses = async () => {
             try {
-                const { data } = await axios.get(`https://gw2test-5b5b5deabf74.herokuapp.com/posts/${postId}`);
+                const { data } = await axios.get(`https://gw2test-5b5b5deabf74.herokuapp.com/api/posts/${postId}`);
                 setPost(data.post);
                 setResponses(data.responses);
             } catch (error) {
