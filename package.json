@@ -1,0 +1,12 @@
+{
+    "name": "my-fullstack-app",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "node backend/server.js",
+      "heroku-postbuild": "cd frontend && npm install && npm run build"
+    },
+    "engines": {
+      "node": "14.x"
+    }
+  }
+  
