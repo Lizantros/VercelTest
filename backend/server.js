@@ -268,6 +268,34 @@ app.get("/get-posts", async (req, res) => {
   });
 });
 
+// Route to create a response for a post
+app.post("/posts/:id/responses", authenticateToken, (req, res) => {
+  // Extract post ID from URL parameters
+  const postId = req.params.id;
+  const userId = req.user.userId; // Assuming your token includes userId
+  const { content } = req.body; // Extract response content from request body
+
+  // Validate the request body
+  if (!content) {
+    return res.status(400).json({ error: "Content is required" });
+  }
+
+  // SQL query to insert a new response
+  const sql = "INSERT INTO responses (post_id, user_id, content) VALUES (?, ?, ?)";
+  const values = [postId, userId, content];
+
+  // Execute the query
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      // Log and return error if the query fails
+      console.error("Database query error:", err);
+      return res.status(500).json({ error: "Error creating response" });
+    }
+    // Return success message for response creation
+    return res.status(201).json({ message: "Response created successfully" });
+  });
+});
+
 // Get post details and responses route
 app.get("/posts/:id", async (req, res) => {
   // Extract post ID from the URL parameters
