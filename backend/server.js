@@ -20,11 +20,6 @@ app.use(express.json());
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static('uploads'));
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
 
 // Database connection setup using MySQL
 const db = mysql.createConnection({
@@ -414,6 +409,13 @@ app.get("/get-user-image/:userId", async (req, res) => {
     }
   });
 });
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
+
 
 // Start the server
 const PORT = process.env.PORT || 5500;
