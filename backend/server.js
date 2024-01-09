@@ -351,37 +351,64 @@ app.get("/api/posts/:id", async (req, res) =>  {
   }
 });
 
-// Delete a post route
+// Route to delete a response
+app.delete("/posts/:postId/responses/:responseId", authenticateToken, (req, res) => {
+  const { postId, responseId } = req.params;
+  const userId = req.user.userId; // Assuming your JWT contains the userId
+
+  // SQL to check if the response belongs to the user
+  const checkResponseSql = "SELECT * FROM responses WHERE id = ? AND user_id = ?";
+
+  db.query(checkResponseSql, [responseId, userId], (err, results) => {
+      if (err) {
+          console.error("Database query error:", err);
+          return res.status(500).json({ error: "Internal Server Error" });
+      }
+      if (results.length === 0) {
+          // Response not found or not belonging to the user
+          return res.status(403).json({ error: "Forbidden" });
+      }
+
+      // SQL to delete the response
+      const deleteResponseSql = "DELETE FROM responses WHERE id = ?";
+
+      db.query(deleteResponseSql, [responseId], (err, results) => {
+          if (err) {
+              console.error("Database query error:", err);
+              return res.status(500).json({ error: "Internal Server Error" });
+          }
+          return res.status(200).json({ message: "Response deleted successfully" });
+      });
+  });
+});
+
+
 app.delete('/posts/:postId', authenticateToken, async (req, res) => {
-  // Extract postId from URL parameters
   const { postId } = req.params;
-  // Get userId from authenticated user
   const userId = req.user.userId;
 
   // SQL query to verify the post belongs to the user
   const verifyQuery = 'SELECT * FROM posts WHERE id = ? AND user_id = ?';
-  // SQL query to delete the post
-  const deleteQuery = 'DELETE FROM posts WHERE id = ?';
 
-  // Verify the post belongs to the user
   db.query(verifyQuery, [postId, userId], (err, results) => {
     if (err) {
-      // Log and return error if the query fails
       return res.status(500).json({ error: "Database error" });
     }
     if (results.length === 0) {
-      // If no matching post is found, return unauthorized error
       return res.status(403).json({ error: "Unauthorized" });
     }
 
-    db.query(deleteQuery, [responseId], (err, results) => {
+    // Corrected use of 'postId' instead of 'responseId'
+    const deleteQuery = 'DELETE FROM posts WHERE id = ?';
+    db.query(deleteQuery, [postId], (err, results) => { // Use postId here
       if (err) {
         return res.status(500).json({ error: "Database error" });
       }
-      return res.json({ message: "Response deleted successfully" });
+      return res.json({ message: "Post deleted successfully" });
     });
   });
 });
+
 
 // Multer configuration for file upload
 const storage = multer.diskStorage({
