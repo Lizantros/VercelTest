@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A fullstack application with React frontend and Node.js backend",
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "cd backend && node server.js",
     "heroku-postbuild": "cd frontend && npm install && npm run build",
     "build": "cd frontend && npm run build"
   },
