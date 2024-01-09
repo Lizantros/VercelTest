@@ -34,7 +34,7 @@ function CreatePost() {
     }
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/create-post`, { title, content }, {
+      await axios.post('https://gw2test-5b5b5deabf74.herokuapp.com/create-post', { title, content }, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setSuccess('Post created successfully');

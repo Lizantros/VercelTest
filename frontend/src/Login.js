@@ -36,7 +36,7 @@ function Login() {
     setErrors(Validation(values));
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, values);
+      const response = await axios.post('https://gw2test-5b5b5deabf74.herokuapp.com/login', values);
       localStorage.setItem('token', response.data.token);
       window.location.href = '/account';
     } catch (error) {

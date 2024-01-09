@@ -36,7 +36,7 @@ function Signup() {
     if(newErrors.name === "" && newErrors.email === "" && newErrors.password === ""){
       try {
         // Send a POST request to the server with form values
-        const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, values);
+        const res = await axios.post('https://gw2test-5b5b5deabf74.herokuapp.com/signup', values);
         
         // Navigate to the home page after successful signup
         navigate('/');

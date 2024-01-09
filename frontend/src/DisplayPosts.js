@@ -23,7 +23,7 @@ function DisplayPosts() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/get-posts`);
+                const response = await axios.get('https://gw2test-5b5b5deabf74.herokuapp.com/get-posts');
                 setPosts(response.data);
             } catch (error) {
                 console.error('Error fetching posts:', error);
@@ -41,7 +41,7 @@ function DisplayPosts() {
             console.error('Authentication token not found');
             return;
         }
-        await axios.delete(`${process.env.REACT_APP_API_BASE_URL}0/posts/${postId}`, {
+        await axios.delete(`https://gw2test-5b5b5deabf74.herokuapp.com/posts/${postId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         setPosts(posts.filter(post => post.id !== postId));
@@ -71,7 +71,7 @@ function DisplayPosts() {
                 <div key={post.id} className="post">
                     <div className="post-user-info">
                         <img
-                            src={post.compteImage ? `${process.env.REACT_APP_API_BASE_URL}/${post.compteImage}` : defaultAvatar}
+                            src={post.compteImage ? `https://gw2test-5b5b5deabf74.herokuapp.com/${post.compteImage}` : defaultAvatar}
                             alt={`${post.userName ? post.userName : "User"}'s avatar`}
                         />
                         <span>{post.userName} / {post.gw2_account_name}</span>
