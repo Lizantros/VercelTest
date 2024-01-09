@@ -20,6 +20,12 @@ app.use(express.json());
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static('uploads'));
 
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
+
 // Database connection setup using MySQL
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
