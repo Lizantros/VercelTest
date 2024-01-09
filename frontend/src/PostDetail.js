@@ -66,7 +66,7 @@ function PostDetail() {
     // Function to handle the deletion of a response
     const handleDeleteResponse = async (responseId) => {
         try {
-            await axios.delete(`https://gw2test-5b5b5deabf74.herokuapp.com/responses/${responseId}`, {
+            await axios.delete(`https://gw2test-5b5b5deabf74.herokuapp.com/posts/${postId}/responses/${responseId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setResponses(responses.filter(response => response.id !== responseId));
@@ -74,7 +74,7 @@ function PostDetail() {
             console.error('Error deleting response:', error);
         }
     };
-
+    
     // If the post is not loaded yet, show a loading message
     if (!post) {
         return <div>Loading...</div>;
