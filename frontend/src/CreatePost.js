@@ -34,7 +34,7 @@ function CreatePost() {
     }
 
     try {
-      await axios.post('http://localhost:5500/create-post', { title, content }, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/create-post`, { title, content }, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setSuccess('Post created successfully');

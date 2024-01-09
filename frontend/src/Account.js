@@ -23,14 +23,14 @@ function Account() {
     const token = localStorage.getItem("token");
     try {
       // Fetch User Information
-      const userInfoResponse = await axios.get("http://localhost:5500/user-info", {
+      const userInfoResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/user-info`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserInfo(userInfoResponse.data);
   
       // Fetch User Image
       if (userInfoResponse.data.id) {
-        const userImageResponse = await axios.get(`http://localhost:5500/get-user-image/${userInfoResponse.data.id}`, {
+        const userImageResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/get-user-image/${userInfoResponse.data.id}`, {
           headers: { Authorization: `Bearer ${token}` },
           responseType: 'text' // Ensure the response is treated as a text
         });
@@ -75,7 +75,7 @@ function Account() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5500/update-gw2-account-name",
+        `${process.env.REACT_APP_API_BASE_URL}/update-gw2-account-name`,
         { gw2AccountName },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -100,7 +100,7 @@ function Account() {
 
     const token = localStorage.getItem("token");
     try {
-      await axios.post("http://localhost:5500/upload-image", formData, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/upload-image`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
@@ -134,7 +134,8 @@ function Account() {
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
     {userInfo.compteImage ? (
         <img 
-            src={`http://localhost:5500/${userInfo.compteImage}`} 
+            src={`${process.env.REACT_APP_API_BASE_URL}/${userInfo.compteImage}`} 
+
             alt="User" 
             style={{ width: '150px', height: '150px', borderRadius: '50%', border: '2px solid red', objectFit: 'cover' }}
             onClick={handleProfileImageClick}

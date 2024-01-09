@@ -36,7 +36,7 @@ function Signup() {
     if(newErrors.name === "" && newErrors.email === "" && newErrors.password === ""){
       try {
         // Send a POST request to the server with form values
-        const res = await axios.post('http://localhost:5500/signup', values);
+        const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, values);
         
         // Navigate to the home page after successful signup
         navigate('/');
